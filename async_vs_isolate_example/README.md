@@ -1,4 +1,4 @@
-# WhatsApp Scrolling Effect in Flutter
+# Async and Isolate in Flutter
 
  ### Flutter Async vs. Isolate: Performance Comparison App 🚀
 
