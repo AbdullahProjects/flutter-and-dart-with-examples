@@ -16,7 +16,7 @@ This Flutter mobile app demonstrates the difference between async-await (single-
 - Dart
 
 ## 🎥 Demo
-[Watch Demo Video](https://www.linkedin.com/feed/update/urn:li:activity:7297213854273486848/)
+[Watch Demo Video](https://www.linkedin.com/feed/update/urn:li:activity:7299032068473155584/)
 
 ## 🤝 Contributing
 Feel free to open issues or create pull requests if you have any improvements!
