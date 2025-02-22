@@ -1,16 +1,22 @@
-# async_vs_isolate_example
+# Async and Isolate in Flutter
 
-A new Flutter project.
+ ### Flutter Async vs. Isolate: Performance Comparison App 🚀
 
-## Getting Started
+This Flutter mobile app demonstrates the difference between async-await (single-threaded concurrency) and Isolates (multi-threaded parallelism) in Dart.
 
-This project is a starting point for a Flutter application.
+### Key Differences:
+🔹 **Async-await:** Runs on the main thread, allowing non-blocking execution but sharing resources with UI updates. Ideal for network requests and database operations.
+🔹 **Isolate:** Runs on a separate thread, enabling parallel execution without blocking the UI. Best for CPU-intensive tasks like image processing or complex calculations.
 
-A few resources to get you started if this is your first Flutter project:
+## 📸 Screenshot
+![Project Screenshot](https://github.com/AbdullahProjects/flutter-and-dart-with-examples/blob/main/async_vs_isolate_example/assets/Screenshot%202025-02-22%20163241.png)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🛠️ Technologies Used
+- Flutter
+- Dart
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🎥 Demo
+[Watch Demo Video](https://www.linkedin.com/feed/update/urn:li:activity:7299032068473155584/)
+
+## 🤝 Contributing
+Feel free to open issues or create pull requests if you have any improvements!
