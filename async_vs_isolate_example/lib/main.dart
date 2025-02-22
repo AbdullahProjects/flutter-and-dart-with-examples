@@ -83,7 +83,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         backgroundColor: Colors.blueAccent,
                       ),
                       onPressed: () async {
-                        await asyncTask();
+                        var total = await asyncTask();
+                        print("Async task completed: $total");
                         showToast(context, "Async task completed");
                       },
                       child: Text(
@@ -128,12 +129,12 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  asyncTask() async {
-    int i = 0;
-    for (int x = i; x < totalValue; x++) {
-      i = x++;
+  Future<int> asyncTask() async {
+    int total = 0;
+    for (int i = 0; i < totalValue; i++) {
+      total += i;
     }
-    print("Async task completed: $i");
+    return total;
   }
 
   void showToast(BuildContext context, String message) {
