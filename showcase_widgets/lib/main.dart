@@ -7,119 +7,305 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: StartShowCaseTutorial(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
+class StartShowCaseTutorial extends StatefulWidget {
+  const StartShowCaseTutorial({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<StartShowCaseTutorial> createState() => _StartShowCaseTutorialState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+class _StartShowCaseTutorialState extends State<StartShowCaseTutorial> {
+  List<Restaurant> restaurants = [
+    Restaurant(
+        "assets/images/restaurant1.jpeg",
+        "Spice Haven",
+        "A vibrant eatery offering a fusion of traditional and modern flavors, specializing in spicy South Asian and Middle Eastern dishes.",
+        true,
+        false),
+    Restaurant(
+        "assets/images/restaurant2.jpeg",
+        "Ocean Bites",
+        "A seafood lover’s paradise with freshly caught fish, sushi, and grilled delights, all served with a view of the ocean.",
+        false,
+        false),
+    Restaurant(
+        "assets/images/restaurant3.jpeg",
+        "The Rustic Fork",
+        "A cozy, countryside-style restaurant featuring homemade comfort food, from wood-fired pizzas to slow-cooked BBQ ribs.",
+        true,
+        true),
+    Restaurant(
+        "assets/images/restaurant4.jpeg",
+        "Skyline Bistro",
+        "A rooftop dining experience offering gourmet international cuisine with breathtaking city views.",
+        true,
+        false),
+    Restaurant(
+        "assets/images/restaurant5.jpeg",
+        " Zen Garden Café ",
+        "A peaceful escape serving organic teas, healthy bowls, and plant-based delicacies in a tranquil, garden-like setting.",
+        true,
+        false),
+    Restaurant(
+        "assets/images/restaurant6.jpeg",
+        "Grill & Chill Steakhouse",
+        "A premium steakhouse known for its juicy grilled meats, signature sauces, and a warm, inviting atmosphere.",
+        false,
+        false),
+    Restaurant(
+        "assets/images/restaurant7.jpeg",
+        "Mystic Tandoor",
+        "An authentic Indian restaurant with a variety of tandoori dishes, flavorful curries, and aromatic biryanis.",
+        true,
+        true),
+    Restaurant(
+        "assets/images/restaurant8.jpeg",
+        "Grill & Chill Steakhouse",
+        "A premium steakhouse known for its juicy grilled meats, signature sauces, and a warm, inviting atmosphere.",
+        false,
+        false),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+    var size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+      backgroundColor: Colors.white,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.pink,
+        child: Icon(
+          Icons.play_arrow,
+          size: 30,
+          color: Colors.white,
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      body: SafeArea(
+        child: Container(
+          width: size.width,
+          height: size.height,
+          padding: const EdgeInsets.symmetric(horizontal: 15).copyWith(top: 15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 14),
+                      decoration: BoxDecoration(
+                        color: Colors.pink.withValues(alpha: 0.06),
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(
+                          color: Colors.pink.withValues(alpha: 0.2),
+                          width: 1.5,
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.menu,
+                            color: Colors.pink,
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Search Restaurant",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.black45,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.search,
+                                  color: Colors.black45,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.pink,
+                    ),
+                    child: Icon(
+                      Icons.person,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Text(
+                "Popular Restaurants",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 20),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: restaurants.length,
+                  padding: const EdgeInsets.only(bottom: 90),
+                  itemBuilder: (context, index) {
+                    Restaurant restaurant = restaurants[index];
+                    return Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 2),
+                      margin: const EdgeInsets.only(bottom: 16),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                      ),
+                      child: Row(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                color: Colors.pink,
+                              ),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.asset(
+                                restaurant.imageUrl,
+                                width: 90,
+                                height: 90,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 15),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  restaurant.name,
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                Text(
+                                  restaurant.description,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.black87,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                // Row(
+                                //   mainAxisAlignment:
+                                //       MainAxisAlignment.spaceBetween,
+                                //   children: [
+                                //     Row(
+                                //       children: [
+                                //         Icon(
+                                //           Icons.reviews,
+                                //           color: Colors.grey,
+                                //         ),
+                                //         const SizedBox(width: 10),
+                                //         Text(restaurant.reviews),
+                                //       ],
+                                //     ),
+                                //     Row(
+                                //       children: [
+                                //         Icon(
+                                //           Icons.comment,
+                                //           color: Colors.grey,
+                                //         ),
+                                //         const SizedBox(width: 10),
+                                //         Text(restaurant.comments),
+                                //       ],
+                                //     ),
+                                //     Row(
+                                //       children: [
+                                //         Icon(
+                                //           Icons.thumb_up,
+                                //           color: Colors.grey,
+                                //         ),
+                                //         const SizedBox(width: 10),
+                                //         Text(restaurant.suggestion),
+                                //       ],
+                                //     ),
+                                //   ],
+                                // ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(width: 15),
+                          Column(
+                            children: [
+                              Text(
+                                "Open",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  color: restaurant.isOpen
+                                      ? Colors.green
+                                      : Colors.red,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Icon(
+                                restaurant.isFavourite
+                                    ? Icons.star
+                                    : Icons.star_outline_outlined,
+                                color: restaurant.isFavourite
+                                    ? const Color(0xffFBC800)
+                                    : Colors.grey,
+                                size: 22,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
+}
+
+class Restaurant {
+  String imageUrl;
+  String name;
+  String description;
+  bool isOpen;
+  bool isFavourite;
+
+  Restaurant(this.imageUrl, this.name, this.description, this.isOpen,
+      this.isFavourite);
 }
