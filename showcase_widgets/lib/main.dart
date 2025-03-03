@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,14 +10,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: StartShowCaseTutorial(),
+    return ShowCaseWidget(
+      builder: (context) {
+        return MaterialApp(
+          title: 'Showcase / Highlight Widgets',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+          ),
+          home: StartShowCaseTutorial(),
+        );
+      },
     );
   }
 }
@@ -29,6 +34,13 @@ class StartShowCaseTutorial extends StatefulWidget {
 }
 
 class _StartShowCaseTutorialState extends State<StartShowCaseTutorial> {
+  final GlobalKey _menuButton = GlobalKey();
+  final GlobalKey _searchBox = GlobalKey();
+  final GlobalKey _profileButton = GlobalKey();
+  final GlobalKey _restaurant = GlobalKey();
+  final GlobalKey _restaurantStatus = GlobalKey();
+  final GlobalKey _restaurantFavourite = GlobalKey();
+  final GlobalKey _playButton = GlobalKey();
   List<Restaurant> restaurants = [
     Restaurant(
         "assets/images/restaurant1.jpeg",
@@ -86,12 +98,33 @@ class _StartShowCaseTutorialState extends State<StartShowCaseTutorial> {
     return Scaffold(
       backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          ShowCaseWidget.of(context).startShowCase([
+            _menuButton,
+            _searchBox,
+            _profileButton,
+            _restaurant,
+            _restaurantStatus,
+            _restaurantFavourite,
+            _playButton
+          ]);
+        },
         backgroundColor: Colors.pink,
-        child: Icon(
-          Icons.play_arrow,
-          size: 30,
-          color: Colors.white,
+        child: ShowCaseTemplate(
+          isFinished: true,
+          globalKey: _playButton,
+          height: 100,
+          width: size.width * 0.5,
+          shape: RoundedRectangleBorder(),
+          isTitleRequired: false,
+          description:
+              "Click here to start Showcase/Highlight Widgets Tutorial",
+          currentShowCase: "7",
+          child: Icon(
+            Icons.play_arrow,
+            size: 30,
+            color: Colors.white,
+          ),
         ),
       ),
       body: SafeArea(
@@ -102,12 +135,12 @@ class _StartShowCaseTutorialState extends State<StartShowCaseTutorial> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Header: menu, search box, profile icon
               Row(
                 children: [
                   Expanded(
                     child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 14),
+                      padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                         color: Colors.pink.withValues(alpha: 0.06),
                         borderRadius: BorderRadius.circular(5),
@@ -118,27 +151,61 @@ class _StartShowCaseTutorialState extends State<StartShowCaseTutorial> {
                       ),
                       child: Row(
                         children: [
-                          Icon(
-                            Icons.menu,
-                            color: Colors.pink,
+                          ShowCaseTemplate(
+                            globalKey: _menuButton,
+                            height: 100,
+                            width: size.width * 0.5,
+                            shape: CircleBorder(),
+                            title: "Menu Button",
+                            description:
+                                "Click on menu button to see detail of all the food items",
+                            currentShowCase: "1",
+                            child: Padding(
+                              padding: const EdgeInsets.all(2),
+                              child: Icon(
+                                Icons.menu,
+                                color: Colors.pink,
+                              ),
+                            ),
                           ),
                           const SizedBox(width: 10),
                           Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Search Restaurant",
-                                  style: TextStyle(
-                                    fontSize: 16,
+                            child: ShowCaseTemplate(
+                              globalKey: _searchBox,
+                              height: 100,
+                              width: size.width * 0.5,
+                              shape: RoundedRectangleBorder(),
+                              isTitleRequired: false,
+                              description:
+                                  "Search here your favourite restaurant",
+                              currentShowCase: "2",
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: SizedBox(
+                                      height: 30,
+                                      child: TextFormField(
+                                        decoration: InputDecoration(
+                                          hintText: "Search Restaurant",
+                                          hintStyle: TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.black45,
+                                          ),
+                                          border: InputBorder.none,
+                                          enabledBorder: InputBorder.none,
+                                          focusedBorder: InputBorder.none,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.search,
                                     color: Colors.black45,
                                   ),
-                                ),
-                                Icon(
-                                  Icons.search,
-                                  color: Colors.black45,
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ],
@@ -152,9 +219,23 @@ class _StartShowCaseTutorialState extends State<StartShowCaseTutorial> {
                       shape: BoxShape.circle,
                       color: Colors.pink,
                     ),
-                    child: Icon(
-                      Icons.person,
-                      color: Colors.white,
+                    child: ShowCaseTemplate(
+                      globalKey: _profileButton,
+                      height: 100,
+                      width: size.width * 0.5,
+                      shape: CircleBorder(),
+                      isTitleRequired: true,
+                      title: "Profile Button",
+                      description:
+                          "See your profile info or edit it by clicking here",
+                      currentShowCase: "3",
+                      child: Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: Icon(
+                          Icons.person,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -167,127 +248,27 @@ class _StartShowCaseTutorialState extends State<StartShowCaseTutorial> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
+              // Restaurant list
               Expanded(
                 child: ListView.builder(
                   itemCount: restaurants.length,
                   padding: const EdgeInsets.only(bottom: 90),
                   itemBuilder: (context, index) {
                     Restaurant restaurant = restaurants[index];
-                    return Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 2),
-                      margin: const EdgeInsets.only(bottom: 16),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                      ),
-                      child: Row(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(
-                                color: Colors.pink,
-                              ),
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image.asset(
-                                restaurant.imageUrl,
-                                width: 90,
-                                height: 90,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 15),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  restaurant.name,
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                Text(
-                                  restaurant.description,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.black87,
-                                  ),
-                                ),
-                                const SizedBox(height: 10),
-                                // Row(
-                                //   mainAxisAlignment:
-                                //       MainAxisAlignment.spaceBetween,
-                                //   children: [
-                                //     Row(
-                                //       children: [
-                                //         Icon(
-                                //           Icons.reviews,
-                                //           color: Colors.grey,
-                                //         ),
-                                //         const SizedBox(width: 10),
-                                //         Text(restaurant.reviews),
-                                //       ],
-                                //     ),
-                                //     Row(
-                                //       children: [
-                                //         Icon(
-                                //           Icons.comment,
-                                //           color: Colors.grey,
-                                //         ),
-                                //         const SizedBox(width: 10),
-                                //         Text(restaurant.comments),
-                                //       ],
-                                //     ),
-                                //     Row(
-                                //       children: [
-                                //         Icon(
-                                //           Icons.thumb_up,
-                                //           color: Colors.grey,
-                                //         ),
-                                //         const SizedBox(width: 10),
-                                //         Text(restaurant.suggestion),
-                                //       ],
-                                //     ),
-                                //   ],
-                                // ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(width: 15),
-                          Column(
-                            children: [
-                              Text(
-                                "Open",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                  color: restaurant.isOpen
-                                      ? Colors.green
-                                      : Colors.red,
-                                ),
-                              ),
-                              const SizedBox(height: 10),
-                              Icon(
-                                restaurant.isFavourite
-                                    ? Icons.star
-                                    : Icons.star_outline_outlined,
-                                color: restaurant.isFavourite
-                                    ? const Color(0xffFBC800)
-                                    : Colors.grey,
-                                size: 22,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    );
+                    return index == 0
+                        ? ShowCaseTemplate(
+                            globalKey: _restaurant,
+                            height: 100,
+                            width: size.width * 0.5,
+                            shape: RoundedRectangleBorder(),
+                            isTitleRequired: false,
+                            description:
+                                "Here is list of individual restaurant near to you. Make sure your location is accorate.",
+                            currentShowCase: "4",
+                            child: _buildRestaurantTile(restaurant, index),
+                          )
+                        : _buildRestaurantTile(restaurant, index);
                   },
                 ),
               ),
@@ -297,8 +278,256 @@ class _StartShowCaseTutorialState extends State<StartShowCaseTutorial> {
       ),
     );
   }
+
+  Widget _buildRestaurantTile(Restaurant restaurant, int index) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 2),
+      margin: const EdgeInsets.only(bottom: 10, top: 10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+      ),
+      child: Row(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                color: Colors.pink,
+                width: 2,
+              ),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.asset(
+                restaurant.imageUrl,
+                width: 90,
+                height: 90,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          const SizedBox(width: 15),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  restaurant.name,
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Text(
+                  restaurant.description,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black87,
+                  ),
+                ),
+                const SizedBox(height: 10),
+              ],
+            ),
+          ),
+          const SizedBox(width: 15),
+          Column(
+            children: [
+              index == 0
+                  ? ShowCaseTemplate(
+                      globalKey: _restaurantStatus,
+                      height: 100,
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      shape: RoundedRectangleBorder(),
+                      isTitleRequired: false,
+                      description:
+                          "It will show real status of restaurant opening, you will see open or close here.",
+                      currentShowCase: "5",
+                      child: Text(
+                        restaurant.isOpen ? "Open" : "Closed",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: restaurant.isOpen ? Colors.green : Colors.red,
+                        ),
+                      ),
+                    )
+                  : Text(
+                      restaurant.isOpen ? "Open" : "Closed",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        color: restaurant.isOpen ? Colors.green : Colors.red,
+                      ),
+                    ),
+              const SizedBox(height: 10),
+              index == 0
+                  ? ShowCaseTemplate(
+                      globalKey: _restaurantFavourite,
+                      height: 100,
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      shape: CircleBorder(),
+                      title: "Favourite",
+                      description:
+                          "Restaurant info will save after favourite if",
+                      currentShowCase: "6",
+                      child: Icon(
+                        restaurant.isFavourite
+                            ? Icons.star
+                            : Icons.star_outline_outlined,
+                        color: restaurant.isFavourite
+                            ? const Color(0xffFBC800)
+                            : Colors.grey,
+                        size: 22,
+                      ),
+                    )
+                  : Icon(
+                      restaurant.isFavourite
+                          ? Icons.star
+                          : Icons.star_outline_outlined,
+                      color: restaurant.isFavourite
+                          ? const Color(0xffFBC800)
+                          : Colors.grey,
+                      size: 22,
+                    ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 }
 
+class ShowCaseTemplate extends StatelessWidget {
+  final GlobalKey globalKey;
+  final String title;
+  final String description;
+  final String currentShowCase;
+  final double height;
+  final double width;
+  final Widget child;
+  final ShapeBorder shape;
+  final bool isTitleRequired;
+  final bool isFinished;
+  const ShowCaseTemplate({
+    super.key,
+    required this.globalKey,
+    this.title = "Title",
+    this.description = "Description",
+    required this.height,
+    required this.width,
+    required this.child,
+    required this.shape,
+    this.isTitleRequired = true,
+    required this.currentShowCase,
+    this.isFinished = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Showcase.withWidget(
+      key: globalKey,
+      height: height,
+      width: width,
+      targetShapeBorder: shape,
+      container: Column(
+        children: [
+          Container(
+            width: width,
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10)
+                .copyWith(bottom: 20),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(
+                color: Colors.pink,
+                width: 2,
+              ),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      "$currentShowCase of 7",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 13,
+                      ),
+                    ),
+                  ],
+                ),
+                isTitleRequired
+                    ? Text(
+                        title,
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    : SizedBox.shrink(),
+                const SizedBox(height: 5),
+                Text(
+                  description,
+                  style: TextStyle(
+                    fontSize: 14,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 15),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              if (!isFinished)
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                  ),
+                  onPressed: () {
+                    ShowCaseWidget.of(context).dismiss();
+                  },
+                  child: Text("Skip"),
+                ),
+              if (!isFinished)
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.pink,
+                  ),
+                  onPressed: () {
+                    ShowCaseWidget.of(context).next();
+                  },
+                  child: Text(
+                    "Next",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              if (isFinished)
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                  ),
+                  onPressed: () {
+                    ShowCaseWidget.of(context).dismiss();
+                  },
+                  child: Text(
+                    "Finish Tutorial",
+                  ),
+                ),
+            ],
+          ),
+        ],
+      ),
+      child: child,
+    );
+  }
+}
+
+// Model
 class Restaurant {
   String imageUrl;
   String name;
