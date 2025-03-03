@@ -1,16 +1,34 @@
-# showcase_widgets
+# ShowCase / Highlight Widgets Tutorial App
 
-A new Flutter project.
+The ShowcaseView package in Flutter helps create guided **UI tours**, making it easier for users to understand your app’s features.
 
-## Getting Started
+## Screenshots & Demo
 
-This project is a starting point for a Flutter application.
+### Demo Images & Video
+| Start Showcase tutorial | Finish Showcase tutorial view |
+|------------------|------------------|
+| ![Image 1](https://github.com/AbdullahProjects/flutter-and-dart-with-examples/blob/main/showcase_widgets/assets/images/demo1.png) | ![Image 2](https://github.com/AbdullahProjects/flutter-and-dart-with-examples/blob/main/showcase_widgets/assets/images/demo2.png) |
 
-A few resources to get you started if this is your first Flutter project:
+[Watch Demo Video on LinkedIn](https://www.linkedin.com/feed/update/urn:li:groupPost:10408911-7294000069177929731/)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Tech Stack
+- **Flutter** & **Dart**
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Installation
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/AbdullahProjects/flutter-and-dart-with-examples.git
+   ```
+2. Navigate to the project folder:
+   
+3. Install dependencies:
+   ```bash
+   flutter pub get
+   ```
+4. Run the app:
+   ```bash
+   flutter run
+   ```
+
+## Contributing
+Feel free to fork this project and submit pull requests!
